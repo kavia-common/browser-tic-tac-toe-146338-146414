@@ -1,54 +1,40 @@
-# Remotion video
+# Remotion Tic Tac Toe (Ocean Professional)
 
-<p align="center">
-  <a href="https://github.com/remotion-dev/logo">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-dark.gif">
-      <img alt="Animated Remotion Logo" src="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-light.gif">
-    </picture>
-  </a>
-</p>
+This project provides a Remotion-based interactive Tic Tac Toe game with a modern "Ocean Professional" style.
 
-Welcome to your Remotion project!
+## Features
+- 3x3 grid with X/O turn taking
+- Current player indicator, winner highlight, and tie detection
+- Scoreboard tracking X wins, O wins, and draws
+- Restart control to reset the board (score persists for the session)
+- Modern blue (#2563EB) and amber (#F59E0B) theme, rounded corners, gradients, and smooth transitions
 
-## Commands
+## Run
 
-**Install Dependencies**
-
-```console
+Install dependencies:
+```bash
 npm i
 ```
 
-**Start Preview**
-
-```console
+Start Remotion Studio:
+```bash
 npm run dev
 ```
 
-**Render video**
+Open the Studio URL in your browser and select the `TicTacToeGame` composition to play the game in the preview pane.
 
-```console
-npx remotion render
+Render (optional):
+```bash
+npx remotion render src/index.ts TicTacToeGame out/tictactoe.mp4
 ```
 
-**Upgrade Remotion**
+## Code structure
+- `src/theme.ts` Shared Ocean Professional theme tokens
+- `src/hooks/useTicTacToe.ts` Game logic (board state, turn, winner/tie, reset)
+- `src/components/` UI components:
+  - `Game.tsx` Main screen composing scoreboard, status bar, board, and controls
+  - `Scoreboard.tsx`, `StatusBar.tsx`, `Board.tsx`, `Cell.tsx`
+- `src/Root.tsx` Registers `TicTacToeGame` composition
 
-```console
-npx remotion upgrade
-```
-
-## Docs
-
-Get started with Remotion by reading the [fundamentals page](https://www.remotion.dev/docs/the-fundamentals).
-
-## Help
-
-We provide help on our [Discord server](https://discord.gg/6VzzNDwUwV).
-
-## Issues
-
-Found an issue with Remotion? [File an issue here](https://github.com/remotion-dev/remotion/issues/new).
-
-## License
-
-Note that for some entities a company license is needed. [Read the terms here](https://github.com/remotion-dev/remotion/blob/main/LICENSE.md).
+## Notes
+This project runs entirely in-browser using Remotion Studio for preview.
