@@ -47,11 +47,13 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({ xWins, oWins, draws }) =
       <div style={rowStyle}>
         <div style={{ ...badgeStyle, color: Theme.text }}>
           <span style={{ ...dot, background: Theme.primary }} />
-          X Wins: <span style={{ color: Theme.primary }}>{xWins}</span>
+          <span aria-hidden="true" style={{ color: Theme.primary, fontWeight: 800 }}>♞</span>&nbsp;Wins:
+          <span style={{ color: Theme.primary, marginLeft: 6 }}>{xWins}</span>
         </div>
         <div style={{ ...badgeStyle, color: Theme.text }}>
           <span style={{ ...dot, background: Theme.secondary }} />
-          O Wins: <span style={{ color: Theme.secondary }}>{oWins}</span>
+          <span aria-hidden="true" style={{ color: Theme.secondary, fontWeight: 800 }}>♛</span>&nbsp;Wins:
+          <span style={{ color: Theme.secondary, marginLeft: 6 }}>{oWins}</span>
         </div>
         <div style={{ ...badgeStyle, color: Theme.text }}>
           <span style={{ ...dot, background: Theme.muted }} />

@@ -29,6 +29,13 @@ const base: React.CSSProperties = {
 const xStyle: React.CSSProperties = { color: Theme.primary };
 const oStyle: React.CSSProperties = { color: Theme.secondary };
 
+const getIcon = (value: "X" | "O" | null) => {
+  // Use Unicode chess icons: ♞ (black knight) and ♛ (black queen)
+  if (value === "X") return "♞";
+  if (value === "O") return "♛";
+  return "";
+};
+
 export const Cell: React.FC<CellProps> = ({ value, onClick, isWinning, disabled }) => {
   const visual: React.CSSProperties = {
     ...base,
@@ -38,11 +45,11 @@ export const Cell: React.FC<CellProps> = ({ value, onClick, isWinning, disabled 
       : base.background,
     boxShadow: isWinning
       ? `0 10px 25px rgba(37, 99, 235, 0.15), 0 6px 12px rgba(245, 158, 11, 0.15)`
-      : base.boxShadow as string,
+      : (base.boxShadow as string),
     cursor: disabled ? "default" : "pointer",
   };
 
-  const symbol = value ?? "";
+  const icon = getIcon(value);
 
   return (
     <button
@@ -50,7 +57,16 @@ export const Cell: React.FC<CellProps> = ({ value, onClick, isWinning, disabled 
       onClick={disabled ? undefined : onClick}
       style={visual}
     >
-      <span style={symbol === "X" ? xStyle : oStyle}>{symbol}</span>
+      <span
+        style={{
+          ...(value === "X" ? xStyle : oStyle),
+          fontSize: 48,
+          lineHeight: 1,
+          filter: "drop-shadow(0 1px 0 rgba(255,255,255,0.6))",
+        }}
+      >
+        {icon}
+      </span>
     </button>
   );
 };

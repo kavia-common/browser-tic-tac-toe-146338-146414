@@ -12,12 +12,39 @@ const Wrap: React.CSSProperties = { ...cardSurface, padding: 16, display: "flex"
 const left: React.CSSProperties = { display: "flex", alignItems: "center", gap: 12, fontWeight: 700, color: Theme.text };
 const tag: React.CSSProperties = { padding: "6px 10px", borderRadius: 8, fontSize: 13, border: `1px solid ${Theme.border}`, background: "rgba(255,255,255,0.9)" };
 
+const iconFor = (p: Player | null) => {
+  if (p === "X") return "♞";
+  if (p === "O") return "♛";
+  return "";
+};
+
 export const StatusBar: React.FC<StatusBarProps> = ({ currentPlayer, winner, isTie }) => {
   const getMessage = () => {
-    if (winner) return `Winner: ${winner}`;
+    if (winner) return (
+      <>
+        Winner:&nbsp;
+        <span aria-hidden="true" style={{ fontWeight: 900 }}>
+          {iconFor(winner)}
+        </span>
+      </>
+    );
     if (isTie) return "It's a draw!";
-    return `Turn: ${currentPlayer}`;
+    return (
+      <>
+        Turn:&nbsp;
+        <span
+          aria-hidden="true"
+          style={{
+            color: currentPlayer === "X" ? Theme.primary : Theme.secondary,
+            fontWeight: 900,
+          }}
+        >
+          {iconFor(currentPlayer)}
+        </span>
+      </>
+    );
   };
+
   const badgeStyle: React.CSSProperties =
     winner
       ? { ...tag, color: Theme.surface, background: Theme.primary, border: "none" }
